@@ -1,11 +1,17 @@
 extends KinematicBody2D
 
 export(int) var speed = 50
+var state = 'default'
 var movedir = Vector2(0, 0)
+var knockdir = Vector2(0, 0)
 var spritedir = 'left'
 var hitstun = 0
 onready var anim = $anim
 	
+func state_machine(newstate):
+	if state != newstate:
+		state = newstate
+		
 func movement_loop():
 	var motion
 	if hitstun != 0:
