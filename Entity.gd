@@ -15,14 +15,13 @@ func movement_loop():
 		move_and_slide(motion, Vector2(0, 0))
 
 func spritedir_loop():
-	match movedir.x:
-		-1:
-			'left'
-		1:
-			'right'
+	if movedir.x == 1:
+		spritedir = 'right'
+	if movedir.x == -1:
+		spritedir = 'left'
 	
 func anim_switch(animation):
-	var new_anim = str(animation, spritedir)
-	if anim.current_animation != new_anim:
-		anim.play(new_anim)
+	var newanim = str(animation, spritedir)
+	if anim.current_animation != newanim:
+		anim.play(newanim)
 	

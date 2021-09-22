@@ -5,6 +5,11 @@ func _physics_process(_delta):
 	spritedir_loop()
 	controls_loop()
 	
+	if movedir != Vector2(0, 0):
+		anim_switch('walk')
+	else:
+		anim_switch('idle')
+	
 func controls_loop():
 	var LEFT = Input.is_action_pressed('move_left')
 	var RIGHT = Input.is_action_pressed('move_right')
