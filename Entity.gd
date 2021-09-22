@@ -2,11 +2,9 @@ extends KinematicBody2D
 
 export(int) var speed = 50
 var movedir = Vector2(0, 0)
+var spritedir = 'left'
 var hitstun = 0
-
-func _physics_process(_delta):
-	movement_loop()
-	controls_loop()
+onready var anim = $anim
 	
 func movement_loop():
 	var motion
@@ -15,15 +13,16 @@ func movement_loop():
 	else:
 		motion = movedir.normalized() * speed
 		move_and_slide(motion, Vector2(0, 0))
-		
-func controls_loop():
-	var LEFT = Input.is_action_pressed('move_left')
-	var RIGHT = Input.is_action_pressed('move_right')
-	var UP = Input.is_action_pressed('move_up')
-	var DOWN = Input.is_action_pressed('move_down')
+
+func spritedir_loop():
+	match movedir.x:
+		-1:
+			'left'
+		1:
+			'right'
 	
-	movedir.x = -int(LEFT) + int(RIGHT)
-	movedir.y = -int(UP) + int(DOWN)
-	
-	
+func anim_switch(animation):
+	var new_anim = str(animation, spritedir)
+	if anim.current_animation != new_anim:
+		anim.play(new_anim)
 	
