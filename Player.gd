@@ -24,6 +24,7 @@ func state_default():
 func state_attack():
 	anim_switch('liteattack1')
 	
+
 func controls_loop():
 	var LEFT = Input.is_action_pressed('move_left')
 	var RIGHT = Input.is_action_pressed('move_right')
